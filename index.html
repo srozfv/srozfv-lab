@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Анализ CSV, проверка качества, срезы и A/B-тесты в браузере.">
+  <title>srozfv lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="engine.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+  <aside class="rail" aria-label="Навигация">
+    <div class="brand"><div class="mark" aria-hidden="true"><i></i><i></i><i></i></div><strong>srozfv<span> lab</span></strong></div>
+    <div class="nav-caption">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+    <nav id="nav">
+      <button data-page="overview" aria-current="page"><span aria-hidden="true">◫</span> Обзор</button>
+      <button data-page="dataset"><span aria-hidden="true">▤</span> Качество данных</button>
+      <button data-page="explore"><span aria-hidden="true">▥</span> Срезы</button>
+      <button data-page="experiment"><span aria-hidden="true">⚗</span> A/B-тесты</button>
+    </nav>
+    <div class="rail-end">
+      <button class="rail-action" id="demo"><span aria-hidden="true">↺</span> Открыть демоданные</button>
+      <div class="local"><span aria-hidden="true"></span> Данные в браузере</div>
+    </div>
+  </aside>
+  <div class="body">
+    <header class="top">
+      <div class="crumb"><span>Рабочее пространство</span><b> / </b><strong id="crumb">Обзор</strong></div>
+      <div class="inline"><button class="button mobile-demo" id="mobile-demo">Демо</button><button class="primary" id="upload">＋ Загрузить CSV</button></div>
+    </header>
+    <main id="main" tabindex="-1"></main>
+  </div>
+  <dialog id="import-dialog" aria-labelledby="import-label">
+    <form id="import-form">
+      <div class="dialog-head"><h2 id="import-label">Загрузить таблицу</h2><button type="button" class="icon" id="close-dialog" aria-label="Закрыть">×</button></div>
+      <p class="muted">CSV или TSV до 20 МБ, 100 000 строк и 100 столбцов. Первая строка — заголовки.</p>
+      <label class="file-zone" id="file-zone"><span aria-hidden="true">⇧</span><strong id="file-caption">Выберите или перетащите файл</strong><input id="file" type="file" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values"></label>
+      <div class="two"><label>Разделитель<select id="separator"><option value="">Автоматически</option><option value=",">Запятая</option><option value=";">Точка с запятой</option><option value="&#9;">Табуляция</option></select></label>
+        <label>Кодировка<select id="encoding"><option value="utf-8">UTF-8</option><option value="windows-1251">Windows-1251</option></select></label></div>
+      <p class="error" id="import-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button type="submit" class="primary" id="import-submit">Загрузить</button></div>
+    </form>
+  </dialog>
+  <div id="notice" class="toast" role="status" hidden></div>
+</body>
+</html>
